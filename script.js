@@ -6,6 +6,8 @@ const theTimer = document.querySelector(".timer");
 
 
 var timer = [0, 0, 0, 0]; // this array will capture the minutes, seconds, hundethds, & thousandths.
+var interval; // this is for the interval inside of start()
+var timerRunning = false; //so when the script orgininaly loads ,the timer is not running
 
 // Add leading zero to numbers 9 or below (purely for aesthetics):
 function leadingZero(time) {
@@ -39,7 +41,9 @@ function spellCheck() {
     let originTextMatch = originText.substring(0, textEntered.length); // as a result you have two equal length strings
 
     if (textEntered == originText) {
+        clearInterval(interval); // if the text maches the clock starts
         testWrapper.style.borderColor = "#429890"; //this change border of text field to green color
+
     } else {
         if (textEntered == originTextMatch) { //note this is the shorter string (substring),if true
             testWrapper.style.borderColor = "#65CCf3"; // blue color
@@ -54,8 +58,11 @@ function spellCheck() {
 // Start the timer:
 function start() {
     let textEnteredLength = testArea.value.length;
-    if (textEnteredLength === 0) {
-        setInterval(runTimer, 10); //this will run the every 1000 of a second
+    if (textEnteredLength === 0 && !timerRunning) {
+        //this sets the timer running to zero so the timer wont start again when the script loads
+        timerRunning = true;
+
+        interval = setInterval(runTimer, 10); //this will run the every 1000 of a second
     }
     console.log(textEnteredLength);
 }
