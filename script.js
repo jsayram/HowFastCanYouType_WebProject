@@ -6,12 +6,19 @@ const theTimer = document.querySelector(".timer");
 
 
 var timer = [0, 0, 0, 0]; // this array will capture the minutes, seconds, hundethds, & thousandths.
-// Add leading zero to numbers 9 or below (purely for aesthetics):
 
+// Add leading zero to numbers 9 or below (purely for aesthetics):
+function leadingZero(time) {
+    if (time <= 9) {
+        time = "0" + time;
+    }
+    return time;
+}
 
 // Run a standard minute/second/hundredths timer:
+// added the function leadintZero helper function to get a string of numbers in return with a leading zero
 function runTimer() {
-    let currentTime = timer[0] + ":" + timer[1] + ":" + timer[2]; //this is the clock setu m,s,hund
+    let currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + ":" + leadingZero(timer[2]); //this is the clock setu m,s,hund
     theTimer.innerHTML = currentTime;
     timer[3]++; //this updates the 4th postion on the array
 
