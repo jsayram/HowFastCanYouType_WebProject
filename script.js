@@ -69,7 +69,24 @@ function start() {
 
 // Reset everything:
 function reset() {
-    console.log("Reset button has been pressed!");
+    //we want to reset the interval timer that runs in the background, to not waste resources
+    clearInterval(interval);
+
+    /* grab interval variable and set it to null, so when re-assign setInterval the next time we start the app
+    --we are not setting a new interval, because that would be mutiple processes in the browser simultanously- not cool*/
+    interval = null;
+    // set the timer array back to zero
+    timer = [0, 0, 0, 0];
+    // we need to set timerRunning back to false
+    timerRunning = false;
+    //clear the text area
+    testArea.value = "";
+    //reset timer back to zero
+    theTimer.innerHTML = "00:00:00";
+    //set the box back to gray color
+    testWrapper.style.borderColor = "grey";
+
+    // console.log("Reset button has been pressed!");
 }
 
 // Event listeners for keyboard input and the reset button:
