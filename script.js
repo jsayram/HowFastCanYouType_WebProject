@@ -14,7 +14,6 @@ function leadingZero(time) {
     }
     return time;
 }
-
 // Run a standard minute/second/hundredths timer:
 // added the function leadintZero helper function to get a string of numbers in return with a leading zero
 function runTimer() {
@@ -32,7 +31,24 @@ function runTimer() {
 // Match the text entered with the provided text on the page:
 function spellCheck() {
     let textEntered = testArea.value;
-    console.log(textEntered);
+
+    //this grabs the orgin text, add sets it up in a new variable and truncates it
+    /*substring treats a string of text as an array and allows us to specify a section within the text
+      -- to pull out and use as a substring, takes two arguments ,
+       (where in array you want to start, how many characters you want returned)*/
+    let originTextMatch = originText.substring(0, textEntered.length); // as a result you have two equal length strings
+
+    if (textEntered == originText) {
+        testWrapper.style.borderColor = "#429890"; //this change border of text field to green color
+    } else {
+        if (textEntered == originTextMatch) { //note this is the shorter string (substring),if true
+            testWrapper.style.borderColor = "#65CCf3"; // blue color
+        } else { //false
+            testWrapper.style.borderColor = "#E95D0F"; // orange color
+        }
+    }
+
+    //console.log(textEntered);
 }
 
 // Start the timer:
